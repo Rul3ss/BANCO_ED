@@ -30,6 +30,19 @@ public class Banco {
         contas.adicionar_conta(conta);
     }
 
+    public Conta_Bancaria buscarConta(String numeroConta) {
+        No_conta atual = contas.getComecoLista(); // Percorre a lista encadeada de contas
+        while (atual != null) {
+            Conta_Bancaria conta = atual.getConta();
+            if (conta.getNumero_da_conta().equals(numeroConta)) {
+                return conta; // Retorna a conta encontrada
+            }
+            atual = atual.getProximo_no();
+        }
+        System.out.println("Conta " + numeroConta + " não encontrada.");
+        return null;
+    }
+
     public Arvore_clientes getClientes() {
         return clientes;
     }

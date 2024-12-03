@@ -5,6 +5,16 @@ public class Lista_contas {
         this.começo_lista = null;
     }
     
+    public No_conta getComecoLista() {
+
+        return começo_lista;
+
+    }
+
+    public void setComeço_lista(No_conta começo_lista) {
+        this.começo_lista = começo_lista;
+    }
+
     public void adicionar_conta(Conta_Bancaria conta) {
         No_conta novoNo = new No_conta(conta);
         if (começo_lista == null) {
