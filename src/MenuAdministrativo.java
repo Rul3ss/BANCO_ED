@@ -71,7 +71,6 @@ public class MenuAdministrativo {
 
         Cliente cliente = banco.buscarCliente(cpf);
         if (cliente == null) {
-            System.out.println("Cliente não encontrado.");
             return;
         }
 
