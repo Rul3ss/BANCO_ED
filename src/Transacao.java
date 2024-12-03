@@ -1,5 +1,7 @@
 import java.time.LocalDateTime;
 public class Transacao {
+    private static int proximo_Id = 1; // ID global estático
+    private int id; 
     private String tipo_de_transacao;
     private double valor;
     private LocalDateTime data_da_transacao;
@@ -7,12 +9,24 @@ public class Transacao {
     private String conta_de_destino;
 
     public Transacao(String tipo_de_transacao, double valor, String conta_de_origem, String conta_de_destino) {
+        this.id = proximo_Id++;
         this.tipo_de_transacao = tipo_de_transacao;
         this.valor = valor;
         this.data_da_transacao = LocalDateTime.now();
         this.conta_de_origem = conta_de_origem;
         this.conta_de_destino = conta_de_destino;
     }
+    
+
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public String getTipo_de_transacao() {
         return tipo_de_transacao;
@@ -55,10 +69,11 @@ public class Transacao {
     }
 
     public String toString() {
-        return "Tipo: " + tipo_de_transacao + ", Valor: R$ " + valor + ", Data/Hora: " + data_da_transacao +
-                ", Conta Origem: " + (conta_de_origem != null ? conta_de_origem : "N/A") +
-                ", Conta Destino: " + (conta_de_destino != null ? conta_de_destino : "N/A");
+        return "ID: " + id +
+               ", Tipo: " + tipo_de_transacao +
+               ", Valor: R$ " + valor +
+               ", Data/Hora: " + data_da_transacao +
+               ", Conta Origem: " + (conta_de_origem != null ? conta_de_origem : "N/A") +
+               ", Conta Destino: " + (conta_de_destino != null ? conta_de_destino : "N/A");
     }
-
-    // existing fields and
 }
