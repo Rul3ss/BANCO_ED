@@ -1,6 +1,8 @@
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class Menu_banco {
+public class Menu_banco implements Serializable{
+    private static final long serialVersionUID = 1L;
     private Banco banco;
 
     // Construtor

@@ -1,4 +1,6 @@
-public class Lista_de_transacoes {
+import java.io.Serializable;
+public class Lista_de_transacoes implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Node_linked_list comeco_do_no;
 
     public Lista_de_transacoes() {

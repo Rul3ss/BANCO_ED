@@ -1,15 +1,19 @@
-public class Conta_Bancaria {
+import java.io.Serializable;
 
+public class Conta_Bancaria implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String numero_da_conta;
     private String nome_do_titular;
+    private String cpf_do_titular;
     private double saldo;
     private String tipo_de_conta;
     private Lista_de_transacoes historicoTransacoes;
     
-    public Conta_Bancaria(String numero_da_conta, String nome_do_titular, double saldo, String tipo_de_conta) {
-        this.numero_da_conta = numero_da_conta;
+    public Conta_Bancaria(String nome_do_titular, String cpf_do_titular, double saldo, String tipo_de_conta) {
+        
         this.nome_do_titular = nome_do_titular;
         this.saldo = saldo;
+        this.cpf_do_titular = cpf_do_titular;
         this.tipo_de_conta = tipo_de_conta;
         this.historicoTransacoes = new Lista_de_transacoes();
     }
@@ -18,6 +22,9 @@ public class Conta_Bancaria {
         return numero_da_conta;
     }
 
+    public String getCpf_do_titular() {
+        return cpf_do_titular;
+    }
     public void setNumero_da_conta(String numero_da_conta) {
         this.numero_da_conta = numero_da_conta;
     }

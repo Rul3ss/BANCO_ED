@@ -1,4 +1,7 @@
-public class No_conta {
+import java.io.Serializable;
+
+public class No_conta implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Conta_Bancaria conta;
     private No_conta proximo_no;
 

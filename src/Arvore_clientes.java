@@ -1,4 +1,6 @@
-public class Arvore_clientes {
+import java.io.Serializable;
+public class Arvore_clientes implements Serializable {
+    private static final long serialVersionUID = 1L;
 
         private No_arvore_cliente raiz; // Raiz da árvore
     
@@ -24,8 +26,7 @@ public class Arvore_clientes {
             }
             return atual;
         }
-    
-        // Método para buscar um cliente pelo CPF
+            // Método para buscar um cliente pelo CPF
         public Cliente buscar(String cpf) {
             return buscarRecursivo(raiz, cpf);
         }

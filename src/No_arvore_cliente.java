@@ -1,4 +1,6 @@
-    class No_arvore_cliente {
+import java.io.Serializable;
+    class No_arvore_cliente implements Serializable {
+        private static final long serialVersionUID = 1L;
         private Cliente cliente;       // Cliente armazenado no nó
         private No_arvore_cliente esquerdo;    // Referência para o nó esquerdo
         private No_arvore_cliente direito;     // Referência para o nó direito

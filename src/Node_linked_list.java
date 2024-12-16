@@ -1,4 +1,6 @@
-public class Node_linked_list {
+import java.io.Serializable;
+public class Node_linked_list implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Transacao transacao;
     private Node_linked_list proximo_no;
     

@@ -1,5 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
-public class Transacao {
+public class Transacao  implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int proximo_Id = 1; // ID global estático
     private int id; 
     private String tipo_de_transacao;

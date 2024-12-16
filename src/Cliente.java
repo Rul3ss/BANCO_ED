@@ -1,4 +1,7 @@
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
     String nome;
     String cpf;
     private Lista_contas contas;
@@ -28,7 +31,6 @@ public void removerConta(String numeroConta) {
     }}
 
     public void consultarContas() {
-        System.out.println("Cliente: " + nome);
         contas.listar(); // Exibe a lista de contas
     }
 

@@ -1,4 +1,6 @@
-public class Lista_contas {
+import java.io.Serializable;
+public class Lista_contas implements Serializable {
+    private static final long serialVersionUID = 1L;
     private No_conta começo_lista;
 
     public Lista_contas() {
@@ -13,23 +15,26 @@ public class Lista_contas {
 
     public void setComeço_lista(No_conta começo_lista) {
         this.começo_lista = começo_lista;
-    }
+        }
 
-    public void adicionar_conta(Conta_Bancaria conta) {
+        private static int numeroSequencial = 235412;
+
+        public void adicionar_conta(Conta_Bancaria conta) {
+        conta.setNumero_da_conta(String.valueOf(numeroSequencial++)); // Define o número sequencial
         No_conta novoNo = new No_conta(conta);
         if (começo_lista == null) {
             começo_lista = novoNo; // Se a lista estiver vazia, o novo nó será o primeiro
         } else {
             No_conta atual = começo_lista;
             while (atual.getProximo_no() != null) {
-                atual = atual.getProximo_no(); // Percorre até o final
+            atual = atual.getProximo_no(); // Percorre até o final
             }
             atual.setProximo_no(novoNo); // Adiciona o novo nó ao final
         }
         System.out.println("Conta adicionada com sucesso: " + conta.getNumero_da_conta());
-    }
+        }
 
-    public boolean remover_conta(String numeroConta) {
+        public boolean remover_conta(String numeroConta) {
         if (começo_lista == null) {
             return false; // Lista vazia
         }
