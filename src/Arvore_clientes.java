@@ -61,4 +61,14 @@ public class Arvore_clientes implements Serializable {
                 exibirEmOrdemRecursivo(atual.getDireito());
             }
         }
+        public int contarNos() {
+            return contarNosRecursivo(raiz);
+        }
+        
+        private int contarNosRecursivo(No_arvore_cliente atual) {
+            if (atual == null) {
+                return 0;
+            }
+            return 1 + contarNosRecursivo(atual.getEsquerdo()) + contarNosRecursivo(atual.getDireito());
+        }
     }

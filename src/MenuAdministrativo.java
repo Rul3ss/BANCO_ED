@@ -32,6 +32,7 @@ public class MenuAdministrativo {
             System.out.println("||  5  ||  Buscar Cliente e Mostrar Informações  ||");
             System.out.println("||  6  ||  Sair para o Menu Principal            ||");
             System.out.println("||  7  ||  Apagar Banco de Dados                 ||");
+            System.out.println("||  8  ||  Criar 1000 contas para testes         ||");
             System.out.println("===================================================");
             System.out.print("Escolha uma opção: ");
 
@@ -50,9 +51,11 @@ public class MenuAdministrativo {
                     break;
                 case 3:
                     new Relatorio(banco).gerarRelatorioClientes();
+                    banco.contarNos();                    
                     break;
                 case 4:
                     new Relatorio(banco).gerarRelatorioContas();
+                    banco.contarNos();
                     break;
                 case 5:
                     buscarClienteEExibirInformacoes(scanner);
@@ -64,6 +67,9 @@ public class MenuAdministrativo {
                 case 7:
                     Menu_banco.apagarBancoDeDados("banco_dados.ser");
                     executando = false;
+                    break;
+                case 8:
+                    criar1000Contas();
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -112,6 +118,42 @@ public class MenuAdministrativo {
         banco.adicionarConta(novaConta);
         cliente.adicionarConta(novaConta);     
         
+    }
+
+    private void criar1000Contas(){
+        String tipoConta = "Corrente";
+        int i = 0;
+        while (i < 1000) {
+            try {
+                Integer cpfRandom = (int) (Math.random() * 1000000000);
+                String cpfString = cpfRandom.toString();
+    
+                Integer numeroConta = (int) (Math.random() * 10000000);
+                String numeroContaString = numeroConta.toString();
+    
+                Double saldo = (double) (Math.random() * 100);
+                String nome = "Cliente " + i;
+    
+                if (banco.clienteJaPossuiConta(cpfString)) {
+                    return;
+                }
+    
+                if(banco.buscarConta(numeroContaString) != null){
+                    return;
+                }
+    
+                Cliente cliente = banco.criarCliente(nome, cpfString);
+    
+                Conta_Bancaria novaConta = new Conta_Bancaria(nome, numeroContaString, saldo, tipoConta);
+                banco.adicionarConta(novaConta);
+                cliente.adicionarConta(novaConta);  
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally{
+                i++;
+            }
+        }
+        System.out.println("+-10000 contas criadas com sucesso!");
     }
 
     private void buscarClienteEExibirInformacoes(Scanner scanner) {

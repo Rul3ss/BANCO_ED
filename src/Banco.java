@@ -149,6 +149,10 @@ public boolean clienteJaPossuiConta(String cpf) {
     }
     return false;
 }
+
+    public void contarNos(){
+        System.out.println(clientes.contarNos() + " Contas registradas");
+    }
     public Arvore_clientes getClientes() {
         return clientes;
     }

@@ -10,7 +10,7 @@ public class Relatorio implements Serializable{
     }
 
     // Método para gerar um relatório de clientes
-    public void gerarRelatorioClientes() {
+    public void gerarRelatorioClientes() {        
         System.out.println("Relatório de Clientes do Banco " + banco.getNomeBanco() + ":");
         banco.getClientes().exibirEmOrdem(); // Exibe os clientes em ordem de CPF
     }
