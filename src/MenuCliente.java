@@ -13,7 +13,6 @@ public class MenuCliente implements Serializable {
 
     // Exibir menu do cliente
     public void exibirMenuCliente(Scanner scanner) {
-        System.out.println("======================================");
         System.out.print("Digite o CPF do cliente: ");
         String cpf = scanner.nextLine();
 

@@ -63,6 +63,7 @@ public class MenuAdministrativo {
                     break;
                 case 7:
                     Menu_banco.apagarBancoDeDados("banco_dados.ser");
+                    executando = false;
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");

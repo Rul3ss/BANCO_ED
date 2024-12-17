@@ -15,7 +15,7 @@ public class Menu_banco implements Serializable {
         File arquivo = new File(caminhoArquivo);
         if (arquivo.exists()) {
             if (arquivo.delete()) {
-                System.out.println("Banco de dados apagado com sucesso.");
+                System.out.println("Banco de dados apagado com sucesso.");                
             } else {
                 System.out.println("Erro ao apagar o banco de dados.");
             }
@@ -72,6 +72,12 @@ public class Menu_banco implements Serializable {
                     System.out.println("Saindo do sistema...");
 
                     executando = false;
+                    break;
+                case 159357:
+                    System.out.println("======================================");
+                    System.out.println("Entrando no modo de testes");                    
+                    System.out.println("======================================");
+                    new God_mode(banco).exibirMenuSecreto();
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
