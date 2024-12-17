@@ -21,10 +21,12 @@ public class Lista_de_transacoes implements Serializable {
     }
     public void exibir() {
         if (comeco_do_no == null) {
+            System.out.println("======================================");
             System.out.println("Nenhuma transação realizada.");
             return;
         }
         Node_linked_list atual = comeco_do_no;
+        System.out.println("======================================");
         System.out.println("Histórico de Transações:");
         while (atual != null) {
             System.out.println(atual.getTransacao());

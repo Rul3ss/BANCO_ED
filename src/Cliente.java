@@ -20,7 +20,7 @@ public String getCpf() {
     return cpf;
 }
 public void adicionarConta(Conta_Bancaria conta) {
-    contas.adicionar_conta(conta);
+    contas.adicionar_conta(conta, true);
 }
 public void removerConta(String numeroConta) {
     boolean removido = contas.remover_conta(numeroConta);

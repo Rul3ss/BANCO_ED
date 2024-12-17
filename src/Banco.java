@@ -17,6 +17,14 @@ public class Banco implements Serializable {
         this.contas = new Lista_contas();
         this.contadorContas = new AtomicInteger(1000);
     }
+    public Conta_Bancaria buscarContaPorCPF(String cpf) {
+        for (Conta_Bancaria conta : converterParaLista()) {
+            if (cpf.equals(conta.getCpf_do_titular())) {
+                return conta;
+            }
+        }
+        return null; // Retorna null se nenhuma conta for encontrada para o CPF fornecido
+    }
     public String gerarNumeroConta() {
         return String.valueOf(contadorContas.getAndIncrement());
     }
@@ -37,21 +45,17 @@ public class Banco implements Serializable {
     // Método para criar um novo cliente
     public Cliente criarCliente(String nome, String cpf) {
         Cliente novoCliente = new Cliente(nome, cpf);
-        clientes.adicionar(novoCliente); // Adiciona o cliente à árvore
-        System.out.println("Cliente criado: " + nome + " (CPF: " + cpf + ")");
+        clientes.adicionar(novoCliente); // Adiciona o cliente à árvore       
         return novoCliente;
     }
 
     public Cliente buscarCliente(String cpf) {
-        Cliente cliente = clientes.buscar(cpf);
-        if (cliente == null) {
-            System.out.println("Cliente com CPF " + cpf + " não encontrado.");
-        }
+        Cliente cliente = clientes.buscar(cpf);      
         return cliente;
     }
 
     public void adicionarConta(Conta_Bancaria conta) {
-        contas.adicionar_conta(conta);
+        contas.adicionar_conta(conta, false);
     }
 
 public ArrayList<Conta_Bancaria> converterParaLista() {
@@ -96,6 +100,29 @@ public Conta_Bancaria buscarConta(String numeroConta) {
 
     System.out.println("Conta " + numeroConta + " não encontrada.");
     return null;
+}
+
+public boolean buscarContaBoolean(String numeroConta) {
+    ArrayList<Conta_Bancaria> lista = converterParaLista();
+    ordenarContasPorNumero(lista);
+
+    int esquerda = 0;
+    int direita = lista.size() - 1;
+
+    while (esquerda <= direita) {
+        int meio = (esquerda + direita) / 2;
+        Conta_Bancaria contaMeio = lista.get(meio);
+        int comparacao = contaMeio.getNumero_da_conta().compareTo(numeroConta);
+
+        if (comparacao == 0) {
+            return true; // Conta encontrada
+        } else if (comparacao < 0) {
+            esquerda = meio + 1;
+        } else {
+            direita = meio - 1;
+        }
+    }
+    return false;
 }
 
 public ArrayList<Conta_Bancaria> buscarContasPorTitular(String nomeTitular) {

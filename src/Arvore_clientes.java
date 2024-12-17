@@ -56,7 +56,7 @@ public class Arvore_clientes implements Serializable {
             if (atual != null) {
                 exibirEmOrdemRecursivo(atual.getEsquerdo());
                 Cliente cliente = atual.getCliente();
-                System.out.println("- Nome: " + cliente.getNome() + ", CPF: " + cliente.getCpf());
+                System.out.println("------- Nome: " + cliente.getNome() + ", CPF: " + cliente.getCpf());
                 cliente.consultarContas(); // Exibe as contas associadas ao cliente
                 exibirEmOrdemRecursivo(atual.getDireito());
             }

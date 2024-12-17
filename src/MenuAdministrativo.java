@@ -19,19 +19,26 @@ public class MenuAdministrativo {
             System.out.println("Senha incorreta. Acesso negado.");
             return;
         }
-
+ 
         boolean executando = true;
         while (executando) {
-            System.out.println("\n===== Menu Administrativo =====");
-            System.out.println("1. Criar Cliente");
-            System.out.println("2. Criar Conta");
-            System.out.println("3. Exibir Relatório de Clientes");
-            System.out.println("4. Exibir Relatório de Contas");
-            System.out.println("5. Buscar Cliente e Mostrar Informações");
-            System.out.println("6. Sair para o Menu Principal");
+            System.out.println("\n===================================================");
+            System.out.println("||          Menu Administrativo                  ||");
+            System.out.println("===================================================");
+            System.out.println("||  1  ||  Criar Cliente                         ||");
+            System.out.println("||  2  ||  Criar Conta                           ||");
+            System.out.println("||  3  ||  Exibir Relatório de Clientes          ||");
+            System.out.println("||  4  ||  Exibir Relatório de Contas            ||");
+            System.out.println("||  5  ||  Buscar Cliente e Mostrar Informações  ||");
+            System.out.println("||  6  ||  Sair para o Menu Principal            ||");
+            System.out.println("||  7  ||  Apagar Banco de Dados                 ||");
+            System.out.println("===================================================");
             System.out.print("Escolha uma opção: ");
 
+
+
             int opcao = scanner.nextInt();
+            System.out.println("=====================================");
             scanner.nextLine(); // Consumir a quebra de linha
 
             switch (opcao) {
@@ -53,6 +60,9 @@ public class MenuAdministrativo {
                 case 6:
                     System.out.println("Retornando ao Menu Principal...");
                     executando = false;
+                    break;
+                case 7:
+                    Menu_banco.apagarBancoDeDados("banco_dados.ser");
                     break;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -81,10 +91,10 @@ public class MenuAdministrativo {
         String cpf = scanner.nextLine();
     
         Cliente cliente = banco.buscarCliente(cpf);
-        if (cliente == null) {
-            System.out.println("Cliente não encontrado.");
-            return;
-        }    
+        // if (cliente == null) {
+        //     System.out.println("Cliente não encontrado.");
+        //     return;
+        // }    
         if (banco.clienteJaPossuiConta(cpf)) {
             System.out.println("O cliente já possui uma conta.");
             return;
@@ -99,7 +109,7 @@ public class MenuAdministrativo {
     
         Conta_Bancaria novaConta = new Conta_Bancaria(cliente.getNome(), cliente.getCpf(), saldo, tipoConta);
         banco.adicionarConta(novaConta);
-    
+        cliente.adicionarConta(novaConta);     
         
     }
 
@@ -108,7 +118,7 @@ public class MenuAdministrativo {
     String nomeTitular = scanner.nextLine();
 
     ArrayList<Conta_Bancaria> contas = banco.buscarContasPorTitular(nomeTitular);
-    if (contas.isEmpty()) {
+    if (contas.isEmpty()) {    
         System.out.println("Nenhuma conta associada ao titular " + nomeTitular + ".");
     } else {
         System.out.println("Informações do Titular: " + nomeTitular);

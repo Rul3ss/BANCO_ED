@@ -17,22 +17,29 @@ public class Lista_contas implements Serializable {
         this.começo_lista = começo_lista;
         }
 
-        private static int numeroSequencial = 235412;
-
-        public void adicionar_conta(Conta_Bancaria conta) {
-        conta.setNumero_da_conta(String.valueOf(numeroSequencial++)); // Define o número sequencial
-        No_conta novoNo = new No_conta(conta);
-        if (começo_lista == null) {
-            começo_lista = novoNo; // Se a lista estiver vazia, o novo nó será o primeiro
-        } else {
-            No_conta atual = começo_lista;
-            while (atual.getProximo_no() != null) {
+    public void adicionar_conta(Conta_Bancaria conta, boolean confirmar) {
+    // Define o número sequencial e adiciona o nome do titular ao número da conta
+    Integer random = (int) (Math.random() * 1000);
+    String numero = random.toString();
+    Banco bancoBusca = new Banco("Banquinho");
+    while(bancoBusca.buscarContaBoolean(numero)){
+        random = (int) (Math.random() * 1000);
+        numero = random.toString();
+    }
+    conta.setNumero_da_conta(numero); 
+    No_conta novoNo = new No_conta(conta);
+    if (começo_lista == null) {
+        começo_lista = novoNo; // Se a lista estiver vazia, o novo nó será o primeiro
+    } else {
+        No_conta atual = começo_lista;
+        while (atual.getProximo_no() != null) {
             atual = atual.getProximo_no(); // Percorre até o final
-            }
-            atual.setProximo_no(novoNo); // Adiciona o novo nó ao final
         }
+        atual.setProximo_no(novoNo); // Adiciona o novo nó ao final
+    }
+    if(confirmar)
         System.out.println("Conta adicionada com sucesso: " + conta.getNumero_da_conta());
-        }
+}
 
         public boolean remover_conta(String numeroConta) {
         if (começo_lista == null) {
@@ -63,6 +70,7 @@ public class Lista_contas implements Serializable {
         while (atual != null) {
             Conta_Bancaria conta = atual.getConta();
             System.out.println("- Conta: " + conta.getNumero_da_conta() + ", Tipo: " + conta.getTipo_de_conta() + ", Saldo: R$ " + conta.getSaldo());
+            System.out.println("====================================");
             atual = atual.getProximo_no();
         }
     }
